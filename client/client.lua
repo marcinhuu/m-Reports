@@ -6,7 +6,7 @@ RegisterCommand('report', function()
         submitText = "Submit Report",
         inputs = {
             {
-                text = "Motivo", 
+                text = "Reason", 
                 name = "motivo", 
                 type = "select", 
                 options = { 

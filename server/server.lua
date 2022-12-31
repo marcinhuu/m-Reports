@@ -22,3 +22,21 @@ function sendToDisc(message)
     function(err, text, headers) end, 'POST', json.encode({username = '[m-Reports] - Logs', embeds = embed}), { ['Content-Type'] = 'application/json' })
 end
 
+
+CreateThread(function()
+    --version check with github latest version
+    PerformHttpRequest(
+        "https://raw.githubusercontent.com/marcinhuu/m-Reports/fxmanifest.lua",
+        function(err, text, headers)
+            if err ~= 200 then
+                return
+            end
+            local version = GetResourceMetadata(GetCurrentResourceName(), "version")
+            local latestVersion = string.match(text, '%sversion \"(.-)\"')
+            if version ~= latestVersion then
+                print("Resource is outdated. Please update " .. GetCurrentResourceName() .. " to the newest version.")
+            end
+        end,
+        "GET"
+    )
+end)
